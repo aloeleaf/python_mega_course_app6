@@ -27,7 +27,7 @@ def about(station, date):
 def all_data(station):
     filename = "data_small/TG_STAID" + str(station).zfill(6) + ".txt"
     df = pd.read_csv(filename, skiprows=20, parse_dates=['    DATE'])
-    result = df.to_dict()
+    result = df.to_dict('records')
     return result
 
 
@@ -36,7 +36,7 @@ def yearly(station, year):
     filename = "data_small/TG_STAID" + str(station).zfill(6) + ".txt"
     df = pd.read_csv(filename, skiprows=20)
     df["    DATE"] = df["    DATE"].astype(str)
-    result = df[df["    DATE"].str.startswith(str(year))].to_dict()
+    result = df[df["    DATE"].str.startswith(str(year))].to_dict('records')
     return result
 
 
